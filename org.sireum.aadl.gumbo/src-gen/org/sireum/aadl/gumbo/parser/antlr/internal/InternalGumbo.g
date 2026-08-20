@@ -343,9 +343,28 @@ ruleSpecSection returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getSpecSectionAccess().getCompositionsCompositionParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getSpecSectionAccess().getMonitorMonitorParserRuleCall_7_0());
 				}
-				lv_compositions_7_0=ruleComposition
+				lv_monitor_7_0=ruleMonitor
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSpecSectionRule());
+					}
+					set(
+						$current,
+						"monitor",
+						lv_monitor_7_0,
+						"org.sireum.aadl.gumbo.Gumbo.Monitor");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSpecSectionAccess().getCompositionsCompositionParserRuleCall_8_0());
+				}
+				lv_compositions_8_0=ruleComposition
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getSpecSectionRule());
@@ -353,7 +372,7 @@ ruleSpecSection returns [EObject current=null]
 					add(
 						$current,
 						"compositions",
-						lv_compositions_7_0,
+						lv_compositions_8_0,
 						"org.sireum.aadl.gumbo.Gumbo.Composition");
 					afterParserOrEnumRuleCall();
 				}
@@ -928,6 +947,140 @@ ruleCompute returns [EObject current=null]
 				}
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleMonitor
+entryRuleMonitor returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMonitorRule()); }
+	iv_ruleMonitor=ruleMonitor
+	{ $current=$iv_ruleMonitor.current; }
+	EOF;
+
+// Rule Monitor
+ruleMonitor returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				/* */
+			}
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getMonitorAccess().getMonitorAction_0(),
+					$current);
+			}
+		)
+		otherlv_1='monitor'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getMonitorAccess().getMonitorKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMonitorAccess().getGuaranteesGuaranteeStatementParserRuleCall_2_0());
+				}
+				lv_guarantees_2_0=ruleGuaranteeStatement
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMonitorRule());
+					}
+					add(
+						$current,
+						"guarantees",
+						lv_guarantees_2_0,
+						"org.sireum.aadl.gumbo.Gumbo.GuaranteeStatement");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMonitorAccess().getAlertsAlertStatementParserRuleCall_3_0());
+				}
+				lv_alerts_3_0=ruleAlertStatement
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMonitorRule());
+					}
+					add(
+						$current,
+						"alerts",
+						lv_alerts_3_0,
+						"org.sireum.aadl.gumbo.Gumbo.AlertStatement");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleAlertStatement
+entryRuleAlertStatement returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAlertStatementRule()); }
+	iv_ruleAlertStatement=ruleAlertStatement
+	{ $current=$iv_ruleAlertStatement.current; }
+	EOF;
+
+// Rule AlertStatement
+ruleAlertStatement returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='alert'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAlertStatementAccess().getAlertKeyword_0());
+		}
+		(
+			(
+				{
+					/* */
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAlertStatementRule());
+					}
+				}
+				otherlv_1=RULE_ID
+				{
+					newLeafNode(otherlv_1, grammarAccess.getAlertStatementAccess().getGuaranteeGuaranteeStatementCrossReference_1_0());
+				}
+			)
+		)
+		otherlv_2='on'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAlertStatementAccess().getOnKeyword_2());
+		}
+		(
+			(
+				{
+					/* */
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAlertStatementRule());
+					}
+				}
+				otherlv_3=RULE_ID
+				{
+					newLeafNode(otherlv_3, grammarAccess.getAlertStatementAccess().getPortPortCrossReference_3_0());
+				}
+			)
+		)
+		otherlv_4=';'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getAlertStatementAccess().getSemicolonKeyword_4());
+		}
 	)
 ;
 
@@ -6081,11 +6234,11 @@ ruleAndExpression returns [EObject current=null]
 			/* */
 		}
 		{
-			newCompositeNode(grammarAccess.getAndExpressionAccess().getEqualNotExpressionParserRuleCall_0());
+			newCompositeNode(grammarAccess.getAndExpressionAccess().getBinaryTemporalExpressionParserRuleCall_0());
 		}
-		this_EqualNotExpression_0=ruleEqualNotExpression
+		this_BinaryTemporalExpression_0=ruleBinaryTemporalExpression
 		{
-			$current = $this_EqualNotExpression_0.current;
+			$current = $this_BinaryTemporalExpression_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -6133,9 +6286,9 @@ ruleAndExpression returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAndExpressionAccess().getRightEqualNotExpressionParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getAndExpressionAccess().getRightBinaryTemporalExpressionParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleEqualNotExpression
+					lv_right_3_0=ruleBinaryTemporalExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAndExpressionRule());
@@ -6144,12 +6297,228 @@ ruleAndExpression returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"org.sireum.aadl.gumbo.Gumbo.EqualNotExpression");
+							"org.sireum.aadl.gumbo.Gumbo.BinaryTemporalExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleBinaryTemporalExpression
+entryRuleBinaryTemporalExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getBinaryTemporalExpressionRule()); }
+	iv_ruleBinaryTemporalExpression=ruleBinaryTemporalExpression
+	{ $current=$iv_ruleBinaryTemporalExpression.current; }
+	EOF;
+
+// Rule BinaryTemporalExpression
+ruleBinaryTemporalExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getBinaryTemporalExpressionAccess().getUnaryTemporalExpressionParserRuleCall_0());
+		}
+		this_UnaryTemporalExpression_0=ruleUnaryTemporalExpression
+		{
+			$current = $this_UnaryTemporalExpression_0.current;
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				((
+					(
+					)
+					(
+						(
+							ruleTemporalBinaryOps
+						)
+					)
+					(
+						(
+							RULE_INTERVAL
+						)
+					)
+				)
+				)=>
+				(
+					(
+						{
+							/* */
+						}
+						{
+							$current = forceCreateModelElementAndSet(
+								grammarAccess.getBinaryTemporalExpressionAccess().getBinaryTemporalExpLeftAction_1_0_0_0(),
+								$current);
+						}
+					)
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getBinaryTemporalExpressionAccess().getOpTemporalBinaryOpsParserRuleCall_1_0_0_1_0());
+							}
+							lv_op_2_0=ruleTemporalBinaryOps
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getBinaryTemporalExpressionRule());
+								}
+								set(
+									$current,
+									"op",
+									lv_op_2_0,
+									"org.sireum.aadl.gumbo.Gumbo.TemporalBinaryOps");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+					(
+						(
+							lv_intvl_3_0=RULE_INTERVAL
+							{
+								newLeafNode(lv_intvl_3_0, grammarAccess.getBinaryTemporalExpressionAccess().getIntvlINTERVALTerminalRuleCall_1_0_0_2_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getBinaryTemporalExpressionRule());
+								}
+								setWithLastConsumed(
+									$current,
+									"intvl",
+									lv_intvl_3_0,
+									"org.sireum.aadl.gumbo.Gumbo.INTERVAL");
+							}
+						)
+					)
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getBinaryTemporalExpressionAccess().getRightUnaryTemporalExpressionParserRuleCall_1_1_0());
+					}
+					lv_right_4_0=ruleUnaryTemporalExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getBinaryTemporalExpressionRule());
+						}
+						set(
+							$current,
+							"right",
+							lv_right_4_0,
+							"org.sireum.aadl.gumbo.Gumbo.UnaryTemporalExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+	)
+;
+
+// Entry rule entryRuleUnaryTemporalExpression
+entryRuleUnaryTemporalExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getUnaryTemporalExpressionRule()); }
+	iv_ruleUnaryTemporalExpression=ruleUnaryTemporalExpression
+	{ $current=$iv_ruleUnaryTemporalExpression.current; }
+	EOF;
+
+// Rule UnaryTemporalExpression
+ruleUnaryTemporalExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					/* */
+				}
+				{
+					$current = forceCreateModelElement(
+						grammarAccess.getUnaryTemporalExpressionAccess().getUnaryTemporalExpAction_0_0(),
+						$current);
+				}
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getUnaryTemporalExpressionAccess().getOpTemporalUnaryOpsParserRuleCall_0_1_0());
+					}
+					lv_op_1_0=ruleTemporalUnaryOps
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getUnaryTemporalExpressionRule());
+						}
+						set(
+							$current,
+							"op",
+							lv_op_1_0,
+							"org.sireum.aadl.gumbo.Gumbo.TemporalUnaryOps");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			(
+				(
+					lv_intvl_2_0=RULE_INTERVAL
+					{
+						newLeafNode(lv_intvl_2_0, grammarAccess.getUnaryTemporalExpressionAccess().getIntvlINTERVALTerminalRuleCall_0_2_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getUnaryTemporalExpressionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"intvl",
+							lv_intvl_2_0,
+							"org.sireum.aadl.gumbo.Gumbo.INTERVAL");
+					}
+				)
+			)
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getUnaryTemporalExpressionAccess().getExpUnaryTemporalExpressionParserRuleCall_0_3_0());
+					}
+					lv_exp_3_0=ruleUnaryTemporalExpression
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getUnaryTemporalExpressionRule());
+						}
+						set(
+							$current,
+							"exp",
+							lv_exp_3_0,
+							"org.sireum.aadl.gumbo.Gumbo.UnaryTemporalExpression");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		    |
+		{
+			/* */
+		}
+		{
+			newCompositeNode(grammarAccess.getUnaryTemporalExpressionAccess().getEqualNotExpressionParserRuleCall_1());
+		}
+		this_EqualNotExpression_4=ruleEqualNotExpression
+		{
+			$current = $this_EqualNotExpression_4.current;
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -9152,6 +9521,102 @@ ruleImpliesOps returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToke
 	)
 ;
 
+// Entry rule entryRuleTemporalUnaryOps
+entryRuleTemporalUnaryOps returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getTemporalUnaryOpsRule()); }
+	iv_ruleTemporalUnaryOps=ruleTemporalUnaryOps
+	{ $current=$iv_ruleTemporalUnaryOps.current.getText(); }
+	EOF;
+
+// Rule TemporalUnaryOps
+ruleTemporalUnaryOps returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='Future'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalUnaryOpsAccess().getFutureKeyword_0());
+		}
+		    |
+		kw='Eventually'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalUnaryOpsAccess().getEventuallyKeyword_1());
+		}
+		    |
+		kw='Globally'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalUnaryOpsAccess().getGloballyKeyword_2());
+		}
+		    |
+		kw='Always'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalUnaryOpsAccess().getAlwaysKeyword_3());
+		}
+		    |
+		kw='Once'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalUnaryOpsAccess().getOnceKeyword_4());
+		}
+		    |
+		kw='Historically'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalUnaryOpsAccess().getHistoricallyKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleTemporalBinaryOps
+entryRuleTemporalBinaryOps returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getTemporalBinaryOpsRule()); }
+	iv_ruleTemporalBinaryOps=ruleTemporalBinaryOps
+	{ $current=$iv_ruleTemporalBinaryOps.current.getText(); }
+	EOF;
+
+// Rule TemporalBinaryOps
+ruleTemporalBinaryOps returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		kw='Until'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalBinaryOpsAccess().getUntilKeyword_0());
+		}
+		    |
+		kw='Release'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalBinaryOpsAccess().getReleaseKeyword_1());
+		}
+		    |
+		kw='Since'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalBinaryOpsAccess().getSinceKeyword_2());
+		}
+		    |
+		kw='Trigger'
+		{
+			$current.merge(kw);
+			newLeafNode(kw, grammarAccess.getTemporalBinaryOpsAccess().getTriggerKeyword_3());
+		}
+	)
+;
+
 // Entry rule entryRuleContainedPropertyAssociation
 entryRuleContainedPropertyAssociation returns [EObject current=null]:
 	{ newCompositeNode(grammarAccess.getContainedPropertyAssociationRule()); }
@@ -11087,6 +11552,8 @@ RULE_OR_OPS : ('|^'|'||'|'|');
 RULE_IMPLIES : ('__'|'-'|'~') '>' ':';
 
 RULE_SIMPLIES : ('___'|'~~') '>' ':';
+
+RULE_INTERVAL : '[' RULE_INTEGER_LIT ',' RULE_INTEGER_LIT ']';
 
 RULE_HEX : '0x' RULE_EXTENDED_DIGIT+ ('.' RULE_IDF)?;
 
